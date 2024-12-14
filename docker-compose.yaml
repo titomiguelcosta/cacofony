@@ -9,7 +9,7 @@ services:
       - "9333:443" # HTTPS
       - "9333:443/udp" # HTTP/3
     volumes:
-      - ./:/app
+      - ${RELEASE_PATH:-.}:/app
       - caddy_data:/data
       - caddy_config:/config
     environment:

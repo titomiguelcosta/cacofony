@@ -23,6 +23,7 @@ host('cacofony.titomiguelcosta.com')
     ->set('env', [
         'SERVER_NAME' => ':8333',
         'APP_LOG_DIR' => '/tmp/cacofony/logs',
+        'RELEASE_PATH' => '/mnt/websites/cacofony/current'
     ]);
 
 after('deploy:failed', 'deploy:unlock');
