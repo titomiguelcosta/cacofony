@@ -13,7 +13,10 @@ set('writable_mode', 'acl');
 set('composer_options', '--prefer-dist --no-progress --no-interaction --optimize-autoloader');
 
 task('docker:restart', function () {
-    run('cd {{current_path}} && docker compose -f docker-compose.yaml up -d', ['timeout' => null]);
+    run('docker compose -f {{current_path}}/docker-compose.yaml pull', ['timeout' => null]);
+    run('docker compose -f {{current_path}}/docker-compose.yaml up -d', ['timeout' => null]);
+    run('docker container prune -f');
+    run('docker image prune -af');
 });
 
 host('cacofony.titomiguelcosta.com')
