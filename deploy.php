@@ -14,7 +14,7 @@ set('composer_options', '--prefer-dist --no-progress --no-interaction --optimize
 
 task('docker:restart', function () {
     run('docker compose -f {{current_path}}/docker-compose.yaml pull', ['timeout' => null]);
-    run('docker compose -f {{current_path}}/docker-compose.yaml up -d', ['timeout' => null]);
+    run('docker compose -f {{current_path}}/docker-compose.yaml up --force-recreate -d', ['timeout' => null]);
     run('docker container prune -f');
     run('docker image prune -af');
 });
