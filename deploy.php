@@ -13,7 +13,7 @@ set('writable_mode', 'acl');
 set('composer_options', '--prefer-dist --no-progress --no-interaction --optimize-autoloader');
 
 task('docker:restart', function () {
-    run('cd {{release_path}} && docker compose up -d', ['timeout' => null]);
+    run('cd {{release_path}} && docker compose -f {{current_path}}/docker-compose.yaml up -d', ['timeout' => null]);
 });
 
 host('cacofony.titomiguelcosta.com')
