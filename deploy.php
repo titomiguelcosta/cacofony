@@ -21,7 +21,7 @@ host('cacofony.titomiguelcosta.com')
     ->set('branch', 'main')
     ->set('deploy_path', '/mnt/websites/cacofony')
     ->set('env', [
-        'SERVER_NAME' => ':80',
+        'SERVER_NAME' => ':8333',
         'APP_LOG_DIR' => '/tmp/cacofony/logs',
     ]);
 
