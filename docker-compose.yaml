@@ -10,6 +10,7 @@ services:
       - "9333:443/udp" # HTTP/3
     volumes:
       - ${RELEASE_PATH:-.}:/app
+      - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
     environment:
