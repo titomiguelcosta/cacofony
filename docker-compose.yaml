@@ -1,18 +1,18 @@
 services:
   php:
     image: dunglas/frankenphp:1.3-php8.4
+    container_name: cacofony
     restart: always
     ports:
       - "8333:80" # HTTP
-      - "9333:443" # HTTPS
-      - "9333:443/udp" # HTTP/3
-    environment:
-      - FRANKENPHP_CONFIG="worker ./public/index.php"
-      - APP_RUNTIME=Runtime\FrankenPhpSymfony\Runtime
+      # - "9333:443" # HTTPS
+      # - "9333:443/udp" # HTTP/3
     volumes:
       - ./:/app
       - caddy_data:/data
       - caddy_config:/config
+    environment:
+      - SERVER_NAME=:80
 
 # Volumes needed for Caddy certificates and configuration
 volumes:
