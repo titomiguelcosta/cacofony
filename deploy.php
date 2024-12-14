@@ -19,7 +19,7 @@ task('frontend:build', function () {
 
 host('cacofony.titomiguelcosta.com')
     ->set('remote_user', 'ubuntu')
-    ->set('branch', 'master')
+    ->set('branch', 'main')
     ->set('deploy_path', '/mnt/websites/cacofony')
     ->set('env', ['PATH' => '/usr/local/bin:/usr/bin:/bin:/mnt/websites/.ubuntu/.nvm/versions/node/v20.0.0/bin']);
 
