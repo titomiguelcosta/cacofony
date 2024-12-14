@@ -12,16 +12,18 @@ set('keep_releases', 1);
 set('writable_mode', 'acl');
 set('composer_options', '--prefer-dist --no-progress --no-interaction --optimize-autoloader');
 
-task('frontend:build', function () {
-    run('cd {{release_path}} && npm install', ['timeout' => null]);
-    run('cd {{release_path}} && npm run build', ['timeout' => null]);
+task('docker:restart', function () {
+    run('cd {{release_path}} && docker compose up -d', ['timeout' => null]);
 });
 
 host('cacofony.titomiguelcosta.com')
     ->set('remote_user', 'ubuntu')
     ->set('branch', 'main')
     ->set('deploy_path', '/mnt/websites/cacofony')
-    ->set('env', ['PATH' => '/usr/local/bin:/usr/bin:/bin:/mnt/websites/.ubuntu/.nvm/versions/node/v20.0.0/bin']);
+    ->set('env', [
+        'SERVER_NAME' => ':80',
+        'APP_LOG_DIR' => '/tmp/cacofony/logs',
+    ]);
 
 after('deploy:failed', 'deploy:unlock');
-
+after('deploy:symlink', 'docker:restart');
