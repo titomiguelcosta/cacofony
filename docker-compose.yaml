@@ -1,7 +1,6 @@
 services:
   php:
     image: dunglas/frankenphp:1.3-php8.4
-    container_name: cacofony
     restart: unless-stopped
     network_mode: host
     ports:
